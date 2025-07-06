@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    @Query("SELECT new com.example.demo.dto.CustomerTotalDto(c.name, SUM(o.amount)) " +
+    @Query("SELECT c.name, SUM(o.amount)" +
             "FROM Customer c JOIN c.orders o GROUP BY c.c_id, c.name")
     List<CustomerTotalDto> findCustomerTotalPurchases();
 }
